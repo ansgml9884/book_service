@@ -49,10 +49,12 @@ def face_regonize():
             face_locations = face_recognition.face_locations(rgb_small_frame)
             face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
             for face_encoding in face_encodings:
-                matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-                if True in matches:
-                    first_match_index = matches.index(True)
-                    face_name = known_face_names[first_match_index]
+                distances = face_recognition.face_distance(known_face_encodings, face_encoding)
+                min_value=min(distances)
+                print(min_value)
+                if min_value<0.6:
+                    index = np.argmin(distances)
+                    face_name = known_face_names[index]
                     
         process_this_frame = not process_this_frame
         if face_name!=None:
