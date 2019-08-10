@@ -127,7 +127,6 @@
 				</div>
 			</div>
 	{% else %}
-
 		<div class="Borrow-page">
 			<div class="form">
 				<form class="Borrow" method="POST" action="/barcode_borrow">
@@ -135,7 +134,7 @@
 						<p>바코드를 인식해주세요</p>
 						<video width =200 height=300 autoplay="true" id="videoElement" class="video">
 						</video>
-						<button value ='ok' name="barcode" onclick="stop()">ok</button>
+						<button value={{user_id}} name ='barcode_user' onclick="stop()">ok</button>
 						<p/>
 						<script>
 							var video = document.querySelector("#videoElement");
@@ -162,7 +161,11 @@
 								alert("확인 후 5초간 기다려주세요")
 							}
 						</script>
-					<button>home</button>
+				</form>
+				<form class="Borrow" method="POST" action="/">
+						{% csrf_token %}
+						<p/>
+						<button>home</button>
 				</form>
 			</div>
 		</div>

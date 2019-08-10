@@ -155,7 +155,11 @@
 								alert("확인 후 5초간 기다려주세요")
 							}
 						</script>
-					<button>home</button>
+				</form>
+				<form class="Return" method="POST" action="/">
+						{% csrf_token %}
+						<p/>
+						<button>home</button>
 				</form>
 			</div>
 		</div>

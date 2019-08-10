@@ -126,27 +126,45 @@
 				<div class="form">
 					<form class="Register" method="POST" action="/face_register">
 						{% csrf_token %}
-						<input type="text" placeholder="얼굴을 인식해주세요" name="image"/>
+						<p>얼굴을 인식해주세요</p>
 						<video width =200 height=300 autoplay="true" id="videoElement" class="video">
 						</video>
+						<button value ='{{user.user_id}}' name="user" onclick="stop()">ok</button>
+						<p/>
 						<script>
 							var video = document.querySelector("#videoElement");
-							if (navigator.mediaDevices.getUserMedia) {       
-								navigator.mediaDevices.getUserMedia({video: true})
-							  .then(function(stream) {
-							    video.srcObject = stream;
-							  })
-							  .catch(function(err0r) {
-							    console.log("Something went wrong!");
-							  });
+								if (navigator.mediaDevices.getUserMedia) {       
+									navigator.mediaDevices.getUserMedia({video: true})
+								  .then(function(stream) {
+								    video.srcObject = stream;
+								  })
+								  .catch(function(err0r) {
+								    console.log("Something went wrong!");
+								  });
+								}
+							function stop() {
+								
+								var stream = video.srcObject;
+								var tracks = stream.getTracks();
+								video.pause()
+								for (var i = 0; i < tracks.length; i++) {
+									var track = tracks[i];
+									track.stop();
+								}
+
+								video.srcObject = null;
+								alert("확인 후 10초간 기다려주세요")
 							}
 						</script>
-						<button value={{user.user_id}} name ='user'>register</button>
-						
-					</form>
-				</div>
+				</form>
+				<form class="Register" method="POST" action="/">
+						{% csrf_token %}
+						<p/>
+						<button>home</button>
+				</form>
+			</div>
 	{% endif %}
 	{% endfor %}
-			</div>
+		</div>
 </body>
 </html>
