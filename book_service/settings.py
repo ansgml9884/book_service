@@ -20,12 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'ah$#p$q#fb3+r1&e6a63#=4y(*9)so$z5wnsk)joc27vk&5mtn'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '(p7p0#$^HHFGHHdggtherververvewkjbnp3290vdvfd)w')
+SECRET_KEY = 'ah$#p$q#fb3+r1&e6a63#=4y(*9)so$z5wnsk)joc27vk&5mtn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True)
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -122,17 +120,4 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASE['default'].update(db_from_env)
 
-MIDDLEWARE = [ 
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
- ]
